@@ -11,14 +11,14 @@ let defaultList = document.querySelectorAll("li");
 let listofTasks = [...defaultList];
 console.log(listofTasks[2].querySelector(".draggableDiv"));
 
-console.log(defaultList);
+// console.log(defaultList);
 
 addTaskBtn.addEventListener("click", addTaskHandler);
 allList.addEventListener("click", removeListHandler);
 allList.addEventListener("click", checkBoxHandler);
 allList.addEventListener("mouseover", eventListenerFn);
 SearchTaskBtn.addEventListener("click", searchKeyword);
-console.log(searchTaskInput);
+// console.log(searchTaskInput);
 
 console.log(itemCompleted, itemTotal);
 
@@ -88,9 +88,7 @@ function checkBoxHandler(e) {
 let dragStartIndex;
 
 function dragStart() {
-  console.log("event: Start");
   dragStartIndex = +this.closest("li").getAttribute("data-index");
-  console.log(dragStartIndex);
 }
 function dragOver(e) {
   e.preventDefault();
@@ -183,4 +181,10 @@ arrowBtn.addEventListener("click", () => {
       "wrapper popUp-wraper  d-flex justify-content-between";
     visible = false;
   }
+});
+
+//!resetBtn
+const resetBtn = document.getElementById("resetBtn");
+resetBtn.addEventListener("click", () => {
+  window.location.reload();
 });
