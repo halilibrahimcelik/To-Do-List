@@ -11,7 +11,7 @@ button:focus {
   outline: 0px !important;
   -webkit-appearance: none;
   box-shadow: none !important;
-  border: none;
+  border-color: #ccc !important;
 }
 
 nav {
