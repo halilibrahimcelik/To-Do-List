@@ -3,7 +3,7 @@ body {
   font-family: "Roboto Condensed", sans-serif;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 input:focus,
@@ -40,12 +40,48 @@ nav .searchBtn:hover {
 }
 
 li {
-  border: 1px solid #ccc !important;
   border-radius: 5px;
 }
 
 .over-list {
   background-color: #716e6e !important;
+}
+
+.list-group-item {
+  align-items: center;
+}
+.list-group-item .col-1 {
+  font-size: 1.5rem;
+  color: #181515;
+  font-weight: 900;
+}
+
+.wrapper {
+  background-color: rgb(156, 67, 51);
+  border-radius: 10px;
+  width: auto;
+  transition: all 1s;
+}
+.wrapper i {
+  font-size: 2rem;
+  padding-right: 2rem;
+  align-self: center;
+}
+.wrapper i:hover {
+  transform: scale(1.06);
+  transition: 0.4s ease-in-out;
+}
+
+.popUp-wraper {
+  position: relative;
+  left: -90%;
+  transition: all 1s;
+}
+
+@media screen and (max-width: 750px) {
+  .container {
+    width: 100% !important;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

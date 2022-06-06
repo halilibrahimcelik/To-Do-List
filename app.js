@@ -167,3 +167,20 @@ function searchKeyword(e) {
   });
   searchTaskInput.value = "";
 }
+
+//!show popUp
+
+const arrowBtn = document.querySelector(".arrowBtn");
+const popUpText = document.querySelector(".wrapper");
+console.log(popUpText);
+let visible = false;
+arrowBtn.addEventListener("click", () => {
+  if (!visible) {
+    popUpText.classList = "wrapper  d-flex justify-content-between";
+    visible = true;
+  } else {
+    popUpText.classList =
+      "wrapper popUp-wraper  d-flex justify-content-between";
+    visible = false;
+  }
+});
