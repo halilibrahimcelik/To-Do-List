@@ -1,0 +1,29 @@
+body {
+  background-image: url("/img/Moon.svg");
+  font-family: "Roboto Condensed", sans-serif;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+nav {
+  background-color: tomato !important;
+  padding: 0 !important;
+}
+nav img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+}
+nav .navbar-brand {
+  color: white;
+  font-weight: 900;
+}
+nav .searchBtn {
+  font-weight: 900;
+}
+nav .searchBtn:hover {
+  transform: scale(1.09);
+  transition: 0.3s ease-in;
+}
+
+/*# sourceMappingURL=style.css.map */
