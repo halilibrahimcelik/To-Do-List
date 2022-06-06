@@ -1,5 +1,5 @@
 body {
-  background-image: url("/img/Moon.svg");
+  background-image: url("../img/Moon.svg");
   font-family: "Roboto Condensed", sans-serif;
   background-repeat: no-repeat;
   background-size: cover;
