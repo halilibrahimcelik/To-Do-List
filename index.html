@@ -37,10 +37,16 @@
         /></a>
 
         <form class="d-flex text-center m-auto m-sm-0" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" />
+          <input
+            id="searchInputArea"
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+          />
           <button
+            id="searchBoxBtn"
             class="btn btn-outline-white text-white searchBtn"
-            type="submit"
+            type="click"
           >
             Search
           </button>
@@ -60,16 +66,17 @@
           />
           <button
             class="col-4 btn btn-outline-secondary text-black m-auto"
-            type="submit"
+            type="button"
             id="addToListBtn"
           >
             Add to List
           </button>
         </form>
         <ul id="all-list" class="list-group d-flex flex-column gap-2">
-          <li data-index="0" class="list-group-item">
+          <li data-index="0" class="list-group-item row d-flex">
+            <span class="col-1">1</span>
             <div
-              class="draggableDiv d-flex justify-content-between"
+              class="draggableDiv d-flex justify-content-between col-11"
               draggable="true"
             >
               <div class="list-content">
@@ -84,9 +91,10 @@
               <button class="btn btn-danger btn-close"></button>
             </div>
           </li>
-          <li data-index="1" class="list-group-item">
+          <li data-index="1" class="list-group-item row d-flex">
+            <span class="col-1">2</span>
             <div
-              class="draggableDiv d-flex justify-content-between"
+              class="draggableDiv d-flex justify-content-between col-11"
               draggable="true"
             >
               <div class="list-content">
@@ -101,9 +109,10 @@
               <button class="btn btn-danger btn-close"></button>
             </div>
           </li>
-          <li data-index="2" class="list-group-item">
+          <li data-index="2" class="list-group-item row d-flex">
+            <span class="col-1">3</span>
             <div
-              class="draggableDiv d-flex justify-content-between"
+              class="draggableDiv d-flex justify-content-between col-11"
               draggable="true"
             >
               <div class="list-content">
@@ -118,9 +127,10 @@
               <button class="btn btn-danger btn-close"></button>
             </div>
           </li>
-          <li data-index="3" class="list-group-item">
+          <li data-index="3" class="list-group-item row d-flex">
+            <span class="col-1">4</span>
             <div
-              class="draggableDiv d-flex justify-content-between"
+              class="draggableDiv d-flex justify-content-between col-11"
               draggable="true"
             >
               <div class="list-content">
@@ -135,9 +145,10 @@
               <button class="btn btn-danger btn-close"></button>
             </div>
           </li>
-          <li data-index="4" class="list-group-item">
+          <li data-index="4" class="list-group-item row d-flex">
+            <span class="col-1">5</span>
             <div
-              class="draggableDiv d-flex justify-content-between"
+              class="draggableDiv d-flex justify-content-between col-11"
               draggable="true"
             >
               <div class="list-content">

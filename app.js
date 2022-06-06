@@ -1,4 +1,6 @@
 const addTaskInput = document.getElementById("addToList");
+const searchTaskInput = document.getElementById("searchInputArea");
+const SearchTaskBtn = document.getElementById("searchBoxBtn");
 const addTaskBtn = document.getElementById("addToListBtn");
 const allList = document.getElementById("all-list");
 const itemCompleted = document.getElementById("itemCompleted");
@@ -15,6 +17,8 @@ addTaskBtn.addEventListener("click", addTaskHandler);
 allList.addEventListener("click", removeListHandler);
 allList.addEventListener("click", checkBoxHandler);
 allList.addEventListener("mouseover", eventListenerFn);
+SearchTaskBtn.addEventListener("click", searchKeyword);
+console.log(searchTaskInput);
 
 console.log(itemCompleted, itemTotal);
 
@@ -30,11 +34,14 @@ function addTaskHandler() {
   itemIndex++;
   const draggableDiv = document.createElement("div");
   const newList = document.createElement("li");
+  const newSpan = document.createElement("span");
 
   draggableDiv.setAttribute("draggable", true);
   newList.setAttribute("data-index", `${itemIndex}`);
-  draggableDiv.className = "draggableDiv d-flex justify-content-between";
-  newList.className = "list-group-item";
+  newSpan.className = "col-1";
+  newSpan.innerText = itemCount;
+  draggableDiv.className = "draggableDiv d-flex justify-content-between col-11";
+  newList.className = "list-group-item row d-flex";
   draggableDiv.innerHTML = `
 
   <div class="list-content">
@@ -50,6 +57,7 @@ function addTaskHandler() {
 
 
   `;
+  newList.appendChild(newSpan);
   newList.appendChild(draggableDiv);
 
   allList.appendChild(newList);
@@ -130,4 +138,32 @@ function eventListenerFn(e) {
       item.addEventListener("dragleave", dragLeave);
     });
   }
+}
+
+//!searchlists
+
+function searchKeyword(e) {
+  e.preventDefault();
+  let text = searchTaskInput.value.toLowerCase();
+
+  //   console.log(indexOf(text));
+
+  let allTaskList = allList.querySelectorAll(".list-content");
+  console.log(allTaskList);
+
+  allTaskList.forEach((task) => {
+    // console.log(task.parentElement.parentElement);
+    let taskText = task.innerText.toLowerCase();
+
+    if (!text) {
+      return;
+    }
+    if (taskText.indexOf(text) !== -1) {
+      task.parentElement.parentElement.classList =
+        "list-group-item row d-flex bg-danger text-white";
+    } else {
+      task.parentElement.parentElement.classList = "list-group-item row d-flex";
+    }
+  });
+  searchTaskInput.value = "";
 }
