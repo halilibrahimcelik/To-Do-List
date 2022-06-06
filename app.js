@@ -14,7 +14,7 @@ console.log(defaultList);
 addTaskBtn.addEventListener("click", addTaskHandler);
 allList.addEventListener("click", removeListHandler);
 allList.addEventListener("click", checkBoxHandler);
-allList.addEventListener("click", eventListenerFn);
+allList.addEventListener("mouseover", eventListenerFn);
 
 console.log(itemCompleted, itemTotal);
 
@@ -30,8 +30,7 @@ function addTaskHandler() {
   itemIndex++;
   const draggableDiv = document.createElement("div");
   const newList = document.createElement("li");
-  //   const button = document.createElement("button");
-  //   button.className = "btn btn-danger btn-close";
+
   draggableDiv.setAttribute("draggable", true);
   newList.setAttribute("data-index", `${itemIndex}`);
   draggableDiv.className = "draggableDiv d-flex justify-content-between";
@@ -57,6 +56,8 @@ function addTaskHandler() {
   itemTotal.innerText = itemCount;
   console.log(addTaskInput.value);
   addTaskInput.value = "";
+  //!Push all list items
+  listofTasks.push(newList);
 }
 
 function removeListHandler(e) {
@@ -88,30 +89,37 @@ function dragOver(e) {
   //   console.log("event: Over");
 }
 function dragEnter() {
-  //   console.log("event: Enter");
-  this.classList.add("over-list");
+  this.closest("li").classList.add("over-list");
 }
 function dragLeave() {
   //   console.log("event: Leave");
-  this.classList.remove("over-list");
+  this.closest("li").classList.remove("over-list");
 }
 function dragDrop() {
   console.log("event: Drop");
   const dragEnd = +this.getAttribute("data-index");
   swapListItem(dragStartIndex, dragEnd);
 
-  this.classList.remove("over-list");
+  this.closest("li").classList.remove("over-list");
 }
 
 function swapListItem(fromIndex, toIndex) {
-  const itemOne = list;
+  const itemOne = listofTasks[fromIndex].querySelector(".draggableDiv");
+  const itemTwo = listofTasks[toIndex].querySelector(".draggableDiv");
+
+  listofTasks[fromIndex].appendChild(itemTwo);
+  listofTasks[toIndex].appendChild(itemOne);
+
+  //   console.log(itemOne);
+  //   console.log("*****");
+  //   console.log(itemTwo);
 }
 function eventListenerFn(e) {
   const draggableDivs = document.querySelectorAll(".draggableDiv");
   const dragListItems = document.querySelectorAll("li");
   if (e.target.classList.contains("list-content")) {
-    console.log("yay");
-    console.log(dragListItems);
+    // console.log("yay");
+    // console.log(dragListItems);
     draggableDivs.forEach((draggable) => {
       draggable.addEventListener("dragstart", dragStart);
     });
