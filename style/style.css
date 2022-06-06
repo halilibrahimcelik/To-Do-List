@@ -3,10 +3,19 @@ body {
   font-family: "Roboto Condensed", sans-serif;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100vh;
+}
+
+input:focus,
+button:focus {
+  outline: 0px !important;
+  -webkit-appearance: none;
+  box-shadow: none !important;
+  border: none;
 }
 
 nav {
-  background-color: tomato !important;
+  background-color: rgb(156, 67, 51) !important;
   padding: 0 !important;
 }
 nav img {
@@ -24,6 +33,15 @@ nav .searchBtn {
 nav .searchBtn:hover {
   transform: scale(1.09);
   transition: 0.3s ease-in;
+}
+
+.container {
+  width: 50% !important;
+}
+
+li {
+  border: 1px solid #ccc !important;
+  border-radius: 5px;
 }
 
 /*# sourceMappingURL=style.css.map */

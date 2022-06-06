@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="style/style.css" />
 
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
@@ -23,14 +25,7 @@
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;700&display=swap"
-      rel="stylesheet"
-    />
-    <script src="app.js" defer></script>
-    <link rel="stylesheet" href="style/style.css" />
+
     <title>To-Do-List</title>
   </head>
   <body>
@@ -51,5 +46,86 @@
         </form>
       </div>
     </nav>
+
+    <section class="container pt-5">
+      <div id="main-list" class="m-auto">
+        <h1 class="text-white text-center">TO-DO-LIST</h1>
+        <form class="row gap-2 text-center pb-3" role="search">
+          <input
+            class="form-control me-2"
+            type="text"
+            placeholder="Add to Task"
+          />
+          <button
+            class="col-4 btn btn-outline-secondary text-black m-auto"
+            type="submit"
+          >
+            Add to List
+          </button>
+        </form>
+        <ul class="list-group d-flex flex-column gap-2">
+          <li class="list-group-item d-flex justify-content-between">
+            <div class="list-content">
+              <input
+                class="form-check-input me-1"
+                type="checkbox"
+                value=""
+                aria-label="..."
+              />
+              Editing Resume
+            </div>
+            <button class="btn btn-danger btn-close"></button>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <div class="list-content">
+              <input
+                class="form-check-input me-1"
+                type="checkbox"
+                value=""
+                aria-label="..."
+              />
+              Finish the team work
+            </div>
+            <button class="btn btn-danger btn-close"></button>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <div class="list-content">
+              <input
+                class="form-check-input me-1"
+                type="checkbox"
+                value=""
+                aria-label="..."
+              />
+              Start working on React
+            </div>
+            <button class="btn btn-danger btn-close"></button>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <div class="list-content">
+              <input
+                class="form-check-input me-1"
+                type="checkbox"
+                value=""
+                aria-label="..."
+              />
+              Review latest project worked on
+            </div>
+            <button class="btn btn-danger btn-close"></button>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <div class="list-content">
+              <input
+                class="form-check-input me-1"
+                type="checkbox"
+                value=""
+                aria-label="..."
+              />
+              Quick smokking
+            </div>
+            <button class="btn btn-danger btn-close"></button>
+          </li>
+        </ul>
+      </div>
+    </section>
   </body>
 </html>
