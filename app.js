@@ -52,29 +52,13 @@ function removeListHandler(e) {
   }
 }
 
-// function checkCount() {
-//   if (!checked) {
-//     itemDoneCount++;
-//     checked = true;
-//   } else {
-//     itemDoneCount--;
-//     checked = false;
-//   }
-//   console.log(itemDoneCount);
-// }
-// checkCount();
-
-let checked = false;
 let itemDoneCount = 0;
+let inputObj;
+let selectedCount = 0;
 function checkBoxHandler(e) {
-  if (!checked) {
-    if (e.target.classList.contains("form-check-input")) {
-      itemCompleted.innerText++;
-      checked = true;
-      return;
-    }
-  } else {
-    itemCompleted.innerText--;
-    checked = false;
+  if (e.target.classList.contains("form-check-input")) {
+    const numberOfCheckedBoxes = $("input:checkbox:checked").length;
+
+    itemCompleted.innerText = numberOfCheckedBoxes;
   }
 }
