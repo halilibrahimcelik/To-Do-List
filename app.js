@@ -156,9 +156,15 @@ function searchKeyword(e) {
     if (!text) {
       return;
     }
+
     if (taskText.indexOf(text) !== -1) {
       task.parentElement.parentElement.classList =
         "list-group-item row d-flex bg-danger text-white";
+
+      setTimeout(() => {
+        task.parentElement.parentElement.classList =
+          "list-group-item row d-flex";
+      }, 3000);
     } else {
       task.parentElement.parentElement.classList = "list-group-item row d-flex";
     }
