@@ -38,6 +38,7 @@ function renderedTasks() {
 
 function addTaskToDom(allTasks) {
   itemCount++;
+  itemIndex++;
   const { id, index, isDone, content } = allTasks;
   const draggableDiv = document.createElement("div");
   const newList = document.createElement("li");
@@ -81,8 +82,7 @@ function addTaskHandler() {
     alert("Please enter a task");
     return;
   }
-  // itemCount++;
-  itemIndex++;
+
   allTaskIndex++;
   //!adding info to the localstorage
   let allTaskObject = {
@@ -102,6 +102,30 @@ function addTaskHandler() {
 function removeListHandler(e) {
   if (e.target.classList.contains("btn")) {
     itemCount--;
+
+    const colIndex = document.querySelectorAll(".col-1");
+    const colArray = [...colIndex];
+    console.log(colArray);
+
+    let arr = [];
+    let newArr = [];
+    console.log(colIndex);
+    colIndex.forEach((col) => {
+      const index = col.innerText;
+      arr.push(index);
+    });
+    arr
+      .map((number, index) => {
+        // if (index === 0) return;
+        newArr.push(index + 1);
+      })
+      .sort((a, b) => a - b);
+
+    colArray.map((col, index) => {
+      col.innerText = newArr[index];
+    });
+    console.log(newArr);
+
     const parentId = e.target.parentElement.parentElement.id;
     allTasks = allTasks.filter((task) => task.id != parentId);
     console.log(allTasks);
