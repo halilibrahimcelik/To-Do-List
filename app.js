@@ -37,6 +37,7 @@ function renderedTasks() {
 }
 
 function addTaskToDom(allTasks) {
+  itemCount++;
   const { id, index, isDone, content } = allTasks;
   const draggableDiv = document.createElement("div");
   const newList = document.createElement("li");
@@ -80,7 +81,7 @@ function addTaskHandler() {
     alert("Please enter a task");
     return;
   }
-  itemCount++;
+  // itemCount++;
   itemIndex++;
   allTaskIndex++;
   //!adding info to the localstorage
