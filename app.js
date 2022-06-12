@@ -58,7 +58,7 @@ function addTaskToDom(allTasks) {
       type="checkbox"
       value="false"
       aria-label="..."
-
+      ${isDone ? "checked" : ""}
     />
     ${content}
   </div>
@@ -101,12 +101,14 @@ function addTaskHandler() {
 function removeListHandler(e) {
   if (e.target.classList.contains("btn")) {
     itemCount--;
+    const parentId = e.target.parentElement.parentElement.id;
+    allTasks = allTasks.filter((task) => task.id != parentId);
+    console.log(allTasks);
 
+    //!!updating the localStorage
+    localStorage.setItem("allTasks", JSON.stringify(allTasks));
     e.target.parentElement.parentElement.remove();
-    let dataList = JSON.parse(localStorage.getItem("allTasks"));
-    let removedList = dataList.filter(
-      (item) => item.text != e.target.previousElementSibling.innerText.trim()
-    );
+
     // console.dir(e.target.previousElementSibling.innerText.trim());
     // localStorage.setItem("allTasks", JSON.stringify(removedList));
     let numberOfCheckedBoxes = $("input:checkbox:checked").length;
@@ -117,6 +119,13 @@ function removeListHandler(e) {
 let isChecked = false;
 function checkBoxHandler(e) {
   if (e.target.classList.contains("form-check-input")) {
+    const parentId = e.target.parentElement.parentElement.id;
+    allTasks.map((task, index) => {
+      if ((task.id = parentId)) {
+        taks[index].isDone = !task[index].isDone;
+      }
+    });
+    localStorage.setItem("allTasks", JSON.stringify(allTasks));
     if (!isChecked) {
       e.target.setAttribute("checked", true);
       isChecked = true;
@@ -241,10 +250,3 @@ const resetBtn = document.getElementById("resetBtn");
 resetBtn.addEventListener("click", () => {
   window.location.reload();
 });
-
-var sample = [87, 88, 91, 10, 22, 9, 92, 94, 33, 21, 50, 41, 60, 80];
-console.log(
-  sample.sort(function (a, b) {
-    return a - b;
-  })
-);
