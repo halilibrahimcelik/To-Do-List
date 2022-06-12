@@ -119,10 +119,11 @@ function removeListHandler(e) {
 let isChecked = false;
 function checkBoxHandler(e) {
   if (e.target.classList.contains("form-check-input")) {
-    const parentId = e.target.parentElement.parentElement.id;
+    const parentId = e.target.parentElement.parentElement.parentElement.id;
+    console.log(parentId);
     allTasks.map((task, index) => {
-      if ((task.id = parentId)) {
-        taks[index].isDone = !task[index].isDone;
+      if (task.id == parentId) {
+        allTasks[index].isDone = !allTasks[index].isDone;
       }
     });
     localStorage.setItem("allTasks", JSON.stringify(allTasks));
