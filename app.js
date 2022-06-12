@@ -10,30 +10,34 @@ let defaultList = document.querySelectorAll("li");
 let listofTasks = [...defaultList];
 // console.log(listofTasks[2].querySelector(".draggableDiv"));
 
+let allTasks = JSON.parse(localStorage.getItem("allTasks")) || [];
+console.log(allTasks);
+
+addTaskBtn.addEventListener("click", addTaskHandler);
+allList.addEventListener("click", removeListHandler);
+allList.addEventListener("click", checkBoxHandler);
+allList.addEventListener("mouseover", eventListenerFn);
+SearchTaskBtn.addEventListener("click", searchKeyword);
 addTaskInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
     addTaskBtn.click();
   }
 });
-let allTasks = localStorage.getItem("alllTasks") || [];
-console.log(allTasks);
-addTaskBtn.addEventListener("click", addTaskHandler);
-allList.addEventListener("click", removeListHandler);
-allList.addEventListener("click", checkBoxHandler);
-allList.addEventListener("mouseover", eventListenerFn);
-SearchTaskBtn.addEventListener("click", searchKeyword);
-
 let itemCount = 5;
 let itemIndex = 4;
+let allTaskIndex = 5;
 
-function addTaskHandler() {
-  if (addTaskInput.value === "") {
-    alert("Please enter a task");
-    return;
-  }
-  itemCount++;
-  itemIndex++;
+renderedTasks();
+
+function renderedTasks() {
+  allTasks.forEach((task) => {
+    addTaskToDom(task);
+  });
+}
+
+function addTaskToDom(allTasks) {
+  const { id, index, isDone, content } = allTasks;
   const draggableDiv = document.createElement("div");
   const newList = document.createElement("li");
   const newSpan = document.createElement("span");
@@ -41,8 +45,9 @@ function addTaskHandler() {
   console.log(formCheck);
   draggableDiv.setAttribute("draggable", true);
   newList.setAttribute("data-index", `${itemIndex}`);
+  newList.setAttribute("id", `${id}`);
   newSpan.className = "col-1";
-  newSpan.innerText = itemCount;
+  newSpan.innerText = index;
   draggableDiv.className = "draggableDiv d-flex justify-content-between col-11";
   newList.className = "list-group-item row d-flex";
   draggableDiv.innerHTML = `
@@ -53,8 +58,9 @@ function addTaskHandler() {
       type="checkbox"
       value="false"
       aria-label="..."
+
     />
-    ${addTaskInput.value}
+    ${content}
   </div>
   <button class="btn btn-danger btn-close"></button>
 
@@ -63,18 +69,33 @@ function addTaskHandler() {
   newList.appendChild(newSpan);
   newList.appendChild(draggableDiv);
 
-  let dataTemplate = {
-    id: index,
-    text: addTaskInput.value,
-    isDone: formCheck.value,
-  };
-
   allList.appendChild(newList);
   itemTotal.innerText = itemCount;
-
-  addTaskInput.value = "";
   //!Push all list items
   listofTasks.push(newList);
+}
+
+function addTaskHandler() {
+  if (addTaskInput.value === "") {
+    alert("Please enter a task");
+    return;
+  }
+  itemCount++;
+  itemIndex++;
+  allTaskIndex++;
+  //!adding info to the localstorage
+  let allTaskObject = {
+    index: allTaskIndex,
+    id: new Date().getTime(),
+    isDone: false,
+    content: addTaskInput.value,
+  };
+  allTasks.push(allTaskObject);
+
+  localStorage.setItem("allTasks", JSON.stringify(allTasks));
+  addTaskToDom(allTaskObject);
+
+  addTaskInput.value = "";
 }
 
 function removeListHandler(e) {
@@ -86,16 +107,23 @@ function removeListHandler(e) {
     let removedList = dataList.filter(
       (item) => item.text != e.target.previousElementSibling.innerText.trim()
     );
-    console.dir(e.target.previousElementSibling.innerText.trim());
-    localStorage.setItem("allTasks", JSON.stringify(removedList));
+    // console.dir(e.target.previousElementSibling.innerText.trim());
+    // localStorage.setItem("allTasks", JSON.stringify(removedList));
     let numberOfCheckedBoxes = $("input:checkbox:checked").length;
     itemCompleted.innerText = numberOfCheckedBoxes--;
     itemTotal.innerText = itemCount;
   }
 }
-
+let isChecked = false;
 function checkBoxHandler(e) {
   if (e.target.classList.contains("form-check-input")) {
+    if (!isChecked) {
+      e.target.setAttribute("checked", true);
+      isChecked = true;
+    } else {
+      e.target.removeAttribute("checked");
+      isChecked = false;
+    }
     const numberOfCheckedBoxes = $("input:checkbox:checked").length;
     itemCompleted.innerText = numberOfCheckedBoxes;
   }
@@ -213,3 +241,10 @@ const resetBtn = document.getElementById("resetBtn");
 resetBtn.addEventListener("click", () => {
   window.location.reload();
 });
+
+var sample = [87, 88, 91, 10, 22, 9, 92, 94, 33, 21, 50, 41, 60, 80];
+console.log(
+  sample.sort(function (a, b) {
+    return a - b;
+  })
+);
