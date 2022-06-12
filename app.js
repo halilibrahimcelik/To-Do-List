@@ -7,9 +7,8 @@ const itemCompleted = document.getElementById("itemCompleted");
 const itemTotal = document.getElementById("itemAll");
 
 let defaultList = document.querySelectorAll("li");
-
 let listofTasks = [...defaultList];
-console.log(listofTasks[2].querySelector(".draggableDiv"));
+// console.log(listofTasks[2].querySelector(".draggableDiv"));
 
 addTaskInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
@@ -17,19 +16,16 @@ addTaskInput.addEventListener("keydown", (e) => {
     addTaskBtn.click();
   }
 });
-let allTasks = [];
-
+let allTasks = localStorage.getItem("alllTasks") || [];
+console.log(allTasks);
 addTaskBtn.addEventListener("click", addTaskHandler);
 allList.addEventListener("click", removeListHandler);
 allList.addEventListener("click", checkBoxHandler);
 allList.addEventListener("mouseover", eventListenerFn);
 SearchTaskBtn.addEventListener("click", searchKeyword);
 
-console.log(itemCompleted, itemTotal);
-let index = 0;
 let itemCount = 5;
 let itemIndex = 4;
-// let listofTasks = ["Editing Resume", "Finish the team work", ""];
 
 function addTaskHandler() {
   if (addTaskInput.value === "") {
@@ -67,20 +63,15 @@ function addTaskHandler() {
   newList.appendChild(newSpan);
   newList.appendChild(draggableDiv);
 
-  index++;
   let dataTemplate = {
     id: index,
     text: addTaskInput.value,
     isDone: formCheck.value,
   };
-  // let dataList = JSON.parse(localStorage.getItem("allTasks"));
-
-  allTasks.push(dataTemplate);
-  localStorage.setItem("allTasks", JSON.stringify(allTasks)); //pushladığımız datalisti buraya atıyoruz.
 
   allList.appendChild(newList);
   itemTotal.innerText = itemCount;
-  console.log(addTaskInput.value);
+
   addTaskInput.value = "";
   //!Push all list items
   listofTasks.push(newList);
@@ -200,7 +191,7 @@ function searchKeyword(e) {
 
 const arrowBtn = document.querySelector(".arrowBtn");
 const popUpText = document.querySelector(".wrapper");
-console.log(popUpText);
+
 let visible = false;
 arrowBtn.addEventListener("click", () => {
   if (!visible) {
