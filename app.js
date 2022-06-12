@@ -101,32 +101,35 @@ function addTaskHandler() {
   addTaskInput.value = "";
 }
 
+const sortBtn = document.getElementById("sortBtn");
+sortBtn.addEventListener("click", sortTheList);
+function sortTheList() {
+  const colIndex = document.querySelectorAll(".col-1");
+  const colArray = [...colIndex];
+  console.log(colArray);
+
+  let arr = [];
+  let newArr = [];
+  console.log(colIndex);
+  colIndex.forEach((col) => {
+    const index = col.innerText;
+    arr.push(index);
+  });
+  arr
+    .map((number, index) => {
+      // if (index === 0) return;
+      newArr.push(index + 1);
+    })
+    .sort((a, b) => a - b);
+
+  colArray.map((col, index) => {
+    col.innerText = newArr[index];
+  });
+  console.log(newArr);
+}
 function removeListHandler(e) {
   if (e.target.classList.contains("btn")) {
     itemCount--;
-
-    const colIndex = document.querySelectorAll(".col-1");
-    const colArray = [...colIndex];
-    console.log(colArray);
-
-    let arr = [];
-    let newArr = [];
-    console.log(colIndex);
-    colIndex.forEach((col) => {
-      const index = col.innerText;
-      arr.push(index);
-    });
-    arr
-      .map((number, index) => {
-        // if (index === 0) return;
-        newArr.push(index + 1);
-      })
-      .sort((a, b) => a - b);
-
-    colArray.map((col, index) => {
-      col.innerText = newArr[index];
-    });
-    console.log(newArr);
 
     const parentId = e.target.parentElement.parentElement.id;
     allTasks = allTasks.filter((task) => task.id != parentId);
