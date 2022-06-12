@@ -82,11 +82,13 @@ function addTaskHandler() {
     alert("Please enter a task");
     return;
   }
+  const colIndex = document.querySelectorAll(".col-1");
+  const colArray = [...colIndex];
+  let indexCount = colArray[colArray.length - 1].innerText;
 
-  allTaskIndex++;
   //!adding info to the localstorage
   let allTaskObject = {
-    index: allTaskIndex,
+    index: ++indexCount,
     id: new Date().getTime(),
     isDone: false,
     content: addTaskInput.value,
@@ -133,9 +135,6 @@ function removeListHandler(e) {
     //!!updating the localStorage
     localStorage.setItem("allTasks", JSON.stringify(allTasks));
     e.target.parentElement.parentElement.remove();
-
-    // console.dir(e.target.previousElementSibling.innerText.trim());
-    // localStorage.setItem("allTasks", JSON.stringify(removedList));
     let numberOfCheckedBoxes = $("input:checkbox:checked").length;
     itemCompleted.innerText = numberOfCheckedBoxes--;
     itemTotal.innerText = itemCount;
