@@ -8,7 +8,6 @@ const itemTotal = document.getElementById("itemAll");
 
 let defaultList = document.querySelectorAll("li");
 let listofTasks = [...defaultList];
-// console.log(listofTasks[2].querySelector(".draggableDiv"));
 
 let allTasks = JSON.parse(localStorage.getItem("allTasks")) || [];
 console.log(allTasks);
@@ -84,7 +83,14 @@ function addTaskHandler() {
   }
   const colIndex = document.querySelectorAll(".col-1");
   const colArray = [...colIndex];
-  let indexCount = colArray[colArray.length - 1].innerText;
+  console.log(colArray.length);
+  let indexCount;
+  if (colArray.length == 0) {
+    indexCount = 0;
+  } else {
+    indexCount = colArray[colArray.length - 1].innerText;
+  }
+  //  =  colArray[colArray.length - 1].innerText || "1";
 
   //!adding info to the localstorage
   let allTaskObject = {
